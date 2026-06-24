@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== LOGIN ===================== -->
+  <div class="screen active" id="screen-login">
+    <div class="auth-split">
+
+      <!-- Lado esquerdo - Visual -->
+      <div class="auth-left">
+        <div class="auth-left-inner">
+          <div class="auth-logo">
+            <div class="logo-icon">Q</div>
+            <span>Quiz<strong>Lab</strong></span>
+          </div>
+          <h1 class="auth-headline">Aprenda mais.<br>Teste mais.<br>Evolua sempre.</h1>
+          <p class="auth-tagline">A plataforma para criar seus próprios simulados e acompanhar sua evolução.</p>
+          <div class="auth-features">
+            <div class="auth-feature">
+              <div>
+                <strong>Crie simulados</strong>
+                <span>Monte questões personalizadas por matéria</span>
+              </div>
+            </div>
+            <div class="auth-feature">
+              <div>
+                <strong>Pratique no quiz</strong>
+                <span>Questões embaralhadas com feedback imediato</span>
+              </div>
+            </div>
+            <div class="auth-feature">
+              <div>
+                <strong>Acompanhe seu histórico</strong>
+                <span>Veja sua pontuação e evolução ao longo do tempo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado direito - Formulário -->
+      <div class="auth-right">
+        <div class="auth-form-wrap">
+          <h2 class="form-title">Bem-vindo de volta</h2>
+          <p class="form-subtitle">Faça login para acessar seus simulados</p>
+
+          <div class="form-group">
+            <label for="login-email">E-mail</label>
+            <input type="email" id="login-email" placeholder="seu@email.com" required>
+            <span class="error" id="err-email">Insira um e-mail válido.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="login-senha">Senha</label>
+            <input type="password" id="login-senha" placeholder="Mínimo 6 caracteres" minlength="6" required>
+            <span class="error" id="err-senha">A senha precisa ter ao menos 6 caracteres.</span>
+          </div>
+
+          <button class="btn-primary" id="btn-login">Entrar</button>
+          <p class="link-text">Não tem conta? <a href="#" id="link-cadastro">Cadastre-se.</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== CADASTRO ===================== -->
+  <div class="screen" id="screen-cadastro">
+    <div class="auth-split">
+
+      <div class="auth-left">
+        <div class="auth-left-inner">
+          <div class="auth-logo">
+            <div class="logo-icon">Q</div>
+            <span>Quiz<strong>Lab</strong></span>
+          </div>
+          <h1 class="auth-headline">Sua jornada de estudos começa aqui.</h1>
+          <p class="auth-tagline">Crie sua conta e comece a criar simulados agora mesmo.</p>
+        </div>
+      </div>
+
+      <div class="auth-right">
+        <div class="auth-form-wrap">
+          <h2 class="form-title">Criar conta</h2>
+          <p class="form-subtitle">Preencha os dados abaixo para começar</p>
+
+          <div class="form-group">
+            <label for="cad-nome">Nome</label>
+            <input type="text" id="cad-nome" placeholder="Seu nome completo" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cad-email">E-mail</label>
+            <input type="email" id="cad-email" placeholder="seu@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cad-senha">Senha</label>
+            <input type="password" id="cad-senha" placeholder="Mínimo 6 caracteres" minlength="6" required>
+            <span class="error" id="err-cad-senha">A senha precisa ter ao menos 6 caracteres.</span>
+          </div>
+
+          <button class="btn-primary" id="btn-cadastro">Criar conta</button>
+          <p class="link-text">Já tem conta? <a href="#" id="link-login">Entrar</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================== APP (com sidebar) ===================== -->
+  <div class="screen" id="screen-app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">Q</div>
+        <span>Quiz<strong>Lab</strong></span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-screen="screen-painel" id="nav-simulados">
+          Simulados
+        </button>
+        <button class="nav-item" data-screen="screen-historico" id="nav-historico">
+          Histórico
+        </button>
+        <button class="nav-item" data-screen="screen-perfil" id="nav-perfil">
+          Meu Perfil
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar" id="sidebar-avatar">E</div>
+          <div class="user-info">
+            <span class="user-name" id="sidebar-nome">Estudante</span>
+            <span class="user-email" id="sidebar-email">—</span>
+          </div>
+        </div>
+        <button class="btn-sair-sidebar" id="btn-sair" title="Sair">⏻</button>
+      </div>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="app-main">
+
+      <!-- ---- PAINEL (Simulados) ---- -->
+      <div class="app-screen active" id="screen-painel">
+        <div class="app-header">
+          <div>
+            <h1 class="app-title">Meus Simulados</h1>
+            <p class="app-subtitle">Escolha um simulado ou crie um novo</p>
+          </div>
+          <button class="btn-primary btn-inline" id="btn-novo-simulado">+ Novo simulado</button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <p class="stat-value" id="stat-simulados-criados">0</p>
+            <p class="stat-label">Simulados criados</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-value" id="stat-feitos">0</p>
+            <p class="stat-label">Simulados feitos</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-value" id="stat-melhor">—</p>
+            <p class="stat-label">Melhor nota</p>
+          </div>
+        </div>
+
+        <div id="lista-simulados">
+          <p class="empty">Nenhum simulado criado ainda. Clique em "+ Novo simulado" para começar.</p>
+        </div>
+      </div>
+
+      <!-- ---- HISTÓRICO ---- -->
+      <div class="app-screen" id="screen-historico">
+        <div class="app-header">
+          <div>
+            <h1 class="app-title">Histórico</h1>
+            <p class="app-subtitle">Todos os simulados que você realizou</p>
+          </div>
+        </div>
+        <div id="lista-historico">
+          <p class="empty">Nenhum simulado realizado ainda. Faça seu primeiro quiz!</p>
+        </div>
+      </div>
+
+      <!-- ---- PERFIL ---- -->
+      <div class="app-screen" id="screen-perfil">
+        <div class="app-header">
+          <div>
+            <h1 class="app-title">Meu Perfil</h1>
+            <p class="app-subtitle">Suas informações e estatísticas</p>
+          </div>
+        </div>
+        <div class="perfil-grid">
+          <div class="card perfil-card">
+            <div class="perfil-avatar" id="perfil-avatar">E</div>
+            <h2 class="perfil-nome" id="perfil-nome">Estudante</h2>
+            <p class="perfil-email" id="perfil-email">—</p>
+          </div>
+          <div class="card">
+            <h3 class="card-section-title">Estatísticas gerais</h3>
+            <div class="perfil-stats">
+              <div class="perfil-stat-row">
+                <span>Simulados criados</span>
+                <strong id="ps-criados">0</strong>
+              </div>
+              <div class="perfil-stat-row">
+                <span>Simulados feitos</span>
+                <strong id="ps-feitos">0</strong>
+              </div>
+              <div class="perfil-stat-row">
+                <span>Melhor nota</span>
+                <strong id="ps-melhor">—</strong>
+              </div>
+              <div class="perfil-stat-row">
+                <span>Média geral</span>
+                <strong id="ps-media">—</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ---- SIMULADO ---- -->
+      <div class="app-screen" id="screen-simulado">
+        <button class="btn-voltar" id="btn-voltar-painel">Voltar para Simulados</button>
+        <div class="app-header">
+          <div>
+            <h1 class="app-title" id="simulado-titulo">Nome do simulado</h1>
+            <p class="app-subtitle" id="simulado-materia-desc"></p>
+          </div>
+          <button class="btn-primary btn-inline" id="btn-iniciar-quiz">Iniciar quiz</button>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="tab-questoes-sim">Questões</button>
+          <button class="tab" data-tab="tab-nova-questao">+ Nova questão</button>
+        </div>
+
+        <div id="tab-questoes-sim" class="tab-content">
+          <div id="lista-questoes-sim">
+            <p class="empty">Nenhuma questão ainda. Adicione a primeira!</p>
+          </div>
+        </div>
+
+        <div id="tab-nova-questao" class="tab-content" style="display:none;">
+          <div class="card">
+            <div class="form-group">
+              <label for="q-enunciado">Enunciado da questão</label>
+              <input type="text" id="q-enunciado" placeholder="Ex: Qual é a capital da França?">
+            </div>
+
+            <div class="form-group">
+              <label for="q-dificuldade">Dificuldade</label>
+              <select id="q-dificuldade">
+                <option>Fácil</option>
+                <option>Médio</option>
+                <option>Difícil</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Alternativas <small>(marque a correta)</small></label>
+              <div id="alternativas">
+                <div class="option-row">
+                  <input type="radio" name="correta" value="0" id="radio-0">
+                  <label for="radio-0" class="radio-label">A</label>
+                  <input type="text" placeholder="Alternativa A" id="alt-0">
+                </div>
+                <div class="option-row">
+                  <input type="radio" name="correta" value="1" id="radio-1">
+                  <label for="radio-1" class="radio-label">B</label>
+                  <input type="text" placeholder="Alternativa B" id="alt-1">
+                </div>
+                <div class="option-row">
+                  <input type="radio" name="correta" value="2" id="radio-2">
+                  <label for="radio-2" class="radio-label">C</label>
+                  <input type="text" placeholder="Alternativa C" id="alt-2">
+                </div>
+                <div class="option-row">
+                  <input type="radio" name="correta" value="3" id="radio-3">
+                  <label for="radio-3" class="radio-label">D</label>
+                  <input type="text" placeholder="Alternativa D" id="alt-3">
+                </div>
+              </div>
+            </div>
+
+            <span class="error" id="err-questao">Preencha o enunciado, as alternativas e marque a correta.</span>
+            <button class="btn-primary" id="btn-salvar-questao">Salvar questão</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ===================== MODAL: Confirmar saída ===================== -->
+  <div class="modal-overlay" id="modal-confirmar-sair" style="display:none;">
+    <div class="modal">
+      <h2 class="modal-title">Sair da conta</h2>
+      <p style="font-size:14px;color:var(--gray-600);margin-bottom:0.5rem;">Tem certeza que deseja sair? Seus simulados não serão salvos.</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="btn-cancelar-sair">Cancelar</button>
+        <button class="btn-primary btn-inline" id="btn-confirmar-sair" style="background:var(--danger);box-shadow:none;">Sair</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL: Novo simulado ===================== -->
+  <div class="modal-overlay" id="modal-novo-simulado" style="display:none;">
+    <div class="modal">
+      <h2 class="modal-title">Novo simulado</h2>
+      <div class="form-group">
+        <label for="novo-sim-titulo">Nome do simulado</label>
+        <input type="text" id="novo-sim-titulo" placeholder="Ex: Prova de Cálculo 1">
+      </div>
+      <div class="form-group">
+        <label for="novo-sim-materia">Matéria</label>
+        <input type="text" id="novo-sim-materia" placeholder="Ex: Matemática">
+      </div>
+      <span class="error" id="err-novo-sim">Preencha o nome do simulado.</span>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="btn-cancelar-sim">Cancelar</button>
+        <button class="btn-primary btn-inline" id="btn-confirmar-sim">Criar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== QUIZ ===================== -->
+  <div class="screen" id="screen-quiz">
+    <div class="quiz-topbar">
+      <div class="quiz-brand">
+        <div class="logo-icon small">Q</div>
+        <span>Quiz<strong>Lab</strong></span>
+      </div>
+      <div class="quiz-progress-wrap">
+        <div class="quiz-progress">
+          <div class="quiz-bar" id="quiz-bar" style="width:0%"></div>
+        </div>
+        <p class="quiz-count" id="quiz-count">Questão 1 de 0</p>
+      </div>
+      <button class="btn-secondary" id="btn-sair-quiz">Sair</button>
+    </div>
+
+    <div class="quiz-body">
+      <p class="quiz-question" id="quiz-pergunta"></p>
+      <div id="quiz-opcoes"></div>
+      <button class="btn-primary btn-inline" id="btn-proxima" style="display:none;">Próxima →</button>
+    </div>
+  </div>
+
+  <!-- ===================== RESULTADO ===================== -->
+  <div class="screen" id="screen-resultado">
+    <div class="result-wrap">
+      <div class="result-box">
+        <p class="result-score" id="res-score">0/0</p>
+        <p class="result-pct" id="res-pct">0%</p>
+        <p class="result-msg" id="res-msg"></p>
+        <div class="result-actions">
+          <button class="btn-primary btn-inline" id="btn-voltar-resultado">Voltar ao painel</button>
+          <button class="btn-secondary" id="btn-historico-resultado">Ver histórico</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
