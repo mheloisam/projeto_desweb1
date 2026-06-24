@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="screen active" style="flex-direction: row; align-items: stretch; height: 100vh; overflow: hidden;">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">Q</div>
+        <span>Quiz<strong>Lab</strong></span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('painel') }}" class="nav-item {% if pagina_ativa == 'simulados' %}active{% endif %}">
+          Simulados
+        </a>
+        <a href="{{ url_for('historico') }}" class="nav-item {% if pagina_ativa == 'historico' %}active{% endif %}">
+          Histórico
+        </a>
+        <a href="{{ url_for('perfil') }}" class="nav-item {% if pagina_ativa == 'perfil' %}active{% endif %}">
+          Meu Perfil
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar">{{ usuario.nome[0].upper() }}</div>
+          <div class="user-info">
+            <span class="user-name">{{ usuario.nome }}</span>
+            <span class="user-email">{{ usuario.email }}</span>
+          </div>
+        </div>
+        <a href="{{ url_for('sair') }}" class="btn-sair-sidebar" title="Sair">⏻</a>
+      </div>
+    </aside>
+
+    <!-- Conteúdo principal -->
+    <main class="app-main">
+      {% block conteudo %}{% endblock %}
+    </main>
+
+  </div>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

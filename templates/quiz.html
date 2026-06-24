@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizLab — Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="screen active" style="flex-direction:column;">
+
+    <div class="quiz-topbar">
+      <div class="quiz-brand">
+        <div class="logo-icon small">Q</div>
+        <span>Quiz<strong>Lab</strong></span>
+      </div>
+      <div class="quiz-progress-wrap">
+        <div class="quiz-progress">
+          <div class="quiz-bar" id="quiz-bar" style="width:0%"></div>
+        </div>
+        <p class="quiz-count" id="quiz-count">Questão 1 de {{ simulado.questoes|length }}</p>
+      </div>
+      <a href="{{ url_for('ver_simulado', sim_id=simulado.id) }}" class="btn-secondary">Sair</a>
+    </div>
+
+    <div class="quiz-body">
+      <p class="quiz-question" id="quiz-pergunta"></p>
+      <div id="quiz-opcoes"></div>
+      <button class="btn-primary btn-inline" id="btn-proxima" style="display:none;">Próxima →</button>
+    </div>
+
+    <form method="POST" action="{{ url_for('resultado', sim_id=simulado.id) }}" id="form-resultado">
+      <input type="hidden" name="acertos" id="input-acertos">
+      <input type="hidden" name="total"   id="input-total">
+    </form>
+
+  </div>
+
+  <script>
+    const questoes = {{ simulado.questoes | tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='quiz.js') }}"></script>
+
+</body>
+</html>

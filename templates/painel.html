@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% set pagina_ativa = 'simulados' %}
+
+{% block conteudo %}
+<div class="app-header">
+  <div>
+    <h1 class="app-title">Meus Simulados</h1>
+    <p class="app-subtitle">Escolha um simulado ou crie um novo</p>
+  </div>
+  <button class="btn-primary btn-inline" id="btn-novo-simulado">
+    + Novo simulado
+  </button>
+</div>
+
+<!-- Estatísticas -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <p class="stat-value">{{ simulados|length }}</p>
+    <p class="stat-label">Simulados criados</p>
+  </div>
+  <div class="stat-card">
+    <p class="stat-value">{{ total_feitos }}</p>
+    <p class="stat-label">Simulados feitos</p>
+  </div>
+  <div class="stat-card">
+    <p class="stat-value">{{ melhor_nota ~ '%' if melhor_nota is not none else '—' }}</p>
+    <p class="stat-label">Melhor nota</p>
+  </div>
+</div>
+
+<!-- Lista de simulados -->
+{% if simulados %}
+  <div class="simulados-grid">
+    {% for sim in simulados %}
+      <a href="{{ url_for('ver_simulado', sim_id=sim.id) }}" class="simulado-card" style="text-decoration:none;">
+        <h3>{{ sim.titulo }}</h3>
+        <p class="sim-materia">{{ sim.materia }}</p>
+        <div class="simulado-card-footer">
+          <span class="badge badge-purple">
+            {{ sim.questoes|length }} {{ 'questão' if sim.questoes|length == 1 else 'questões' }}
+          </span>
+          <form method="POST" action="{{ url_for('remover_simulado', sim_id=sim.id) }}" onclick="event.stopPropagation()">
+            <button type="submit" class="btn-remover-sim">remover</button>
+          </form>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="empty">Nenhum simulado criado ainda. Clique em "+ Novo simulado" para começar.</p>
+{% endif %}
+
+<!-- Modal: Novo simulado -->
+<div class="modal-overlay" id="modal-novo-simulado" style="display:none;">
+  <div class="modal">
+    <h2 class="modal-title">Novo simulado</h2>
+    <form method="POST" action="{{ url_for('novo_simulado') }}">
+      <div class="form-group">
+        <label for="titulo">Nome do simulado</label>
+        <input type="text" id="titulo" name="titulo" placeholder="Ex: Prova de Cálculo 1" required>
+      </div>
+      <div class="form-group">
+        <label for="materia">Matéria</label>
+        <input type="text" id="materia" name="materia" placeholder="Ex: Matemática">
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" id="btn-cancelar-sim">
+          Cancelar
+        </button>
+        <button type="submit" class="btn-primary btn-inline">Criar</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='painel.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% set pagina_ativa = 'perfil' %}
+
+{% block conteudo %}
+<div class="app-header">
+  <div>
+    <h1 class="app-title">Meu Perfil</h1>
+    <p class="app-subtitle">Suas informações e estatísticas</p>
+  </div>
+</div>
+
+<div class="perfil-grid">
+  <div class="card perfil-card">
+    <div class="perfil-avatar">{{ usuario.nome[0].upper() }}</div>
+    <h2 class="perfil-nome">{{ usuario.nome }}</h2>
+    <p class="perfil-email">{{ usuario.email }}</p>
+  </div>
+
+  <div class="card">
+    <h3 class="card-section-title">Estatísticas gerais</h3>
+    <div class="perfil-stats">
+      <div class="perfil-stat-row">
+        <span>Simulados criados</span>
+        <strong>{{ total_simulados }}</strong>
+      </div>
+      <div class="perfil-stat-row">
+        <span>Simulados feitos</span>
+        <strong>{{ total_feitos }}</strong>
+      </div>
+      <div class="perfil-stat-row">
+        <span>Melhor nota</span>
+        <strong>{{ melhor_nota ~ '%' if melhor_nota is not none else '—' }}</strong>
+      </div>
+      <div class="perfil-stat-row">
+        <span>Média geral</span>
+        <strong>{{ media ~ '%' if media is not none else '—' }}</strong>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

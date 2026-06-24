@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizLab — Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="screen active">
+    <div class="auth-split">
+
+      <!-- Lado esquerdo -->
+      <div class="auth-left">
+        <div class="auth-left-inner">
+          <div class="auth-logo">
+            <div class="logo-icon">Q</div>
+            <span>Quiz<strong>Lab</strong></span>
+          </div>
+          <h1 class="auth-headline">Aprenda mais.<br>Teste mais.<br>Evolua sempre.</h1>
+          <p class="auth-tagline">A plataforma para criar seus próprios simulados e acompanhar sua evolução.</p>
+          <div class="auth-features">
+            <div class="auth-feature">
+              <div>
+                <strong>Crie simulados</strong>
+                <span>Monte questões personalizadas por matéria</span>
+              </div>
+            </div>
+            <div class="auth-feature">
+              <div>
+                <strong>Pratique no quiz</strong>
+                <span>Questões embaralhadas com feedback imediato</span>
+              </div>
+            </div>
+            <div class="auth-feature">
+              <div>
+                <strong>Acompanhe seu histórico</strong>
+                <span>Veja sua pontuação e evolução ao longo do tempo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado direito -->
+      <div class="auth-right">
+        <div class="auth-form-wrap">
+          <h2 class="form-title">Bem-vindo de volta</h2>
+          <p class="form-subtitle">Faça login para acessar seus simulados</p>
+
+          {% if erro %}
+            <p class="error" style="display:block; margin-bottom: 1rem;">{{ erro }}</p>
+          {% endif %}
+
+          <form method="POST" action="{{ url_for('login') }}">
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="senha">Senha</label>
+              <input type="password" id="senha" name="senha" placeholder="Mínimo 6 caracteres" required>
+            </div>
+
+            <button type="submit" class="btn-primary">Entrar</button>
+          </form>
+
+          <p class="link-text">Não tem conta? <a href="{{ url_for('cadastro') }}">Cadastre-se grátis</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

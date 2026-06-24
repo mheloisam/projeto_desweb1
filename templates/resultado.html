@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizLab — Resultado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="screen active" id="screen-resultado">
+    <div class="result-wrap">
+      <div class="result-box">
+        <p class="result-score">{{ acertos }}/{{ total }}</p>
+        <p class="result-pct">{{ pct }}%</p>
+        <p class="result-msg">
+          {% if pct >= 80 %}
+            Excelente! Parabéns pelo desempenho!
+          {% elif pct >= 50 %}
+            Bom resultado! Quase lá.
+          {% else %}
+            Continue praticando! Você vai melhorar.
+          {% endif %}
+        </p>
+        <div class="result-actions">
+          <a href="{{ url_for('painel') }}" class="btn-primary btn-inline">Voltar ao painel</a>
+          <a href="{{ url_for('historico') }}" class="btn-secondary">Ver histórico</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
