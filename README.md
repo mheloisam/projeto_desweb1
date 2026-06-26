@@ -30,8 +30,8 @@ Projeto acadêmico desenvolvido para a disciplina de Desenvolvimento de Sistemas
 
 **1. Clone o repositório**
 ```bash
-git clone https://github.com/mheloisam/projeto_desweb1.git
-cd projeto_desweb1
+git clone https://github.com/mheloisam/quizlab.git
+cd quizlab
 ```
 
 **2. Crie e ative um ambiente virtual**
